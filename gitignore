@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+lexx_bot.db
+*.db
+.DS_Store
