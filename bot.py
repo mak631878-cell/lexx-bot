@@ -1088,11 +1088,18 @@ def main():
     app = Application.builder().token(BOT_TOKEN).build()
 
     # Напоминания — каждый день в 10:00
-    app.job_queue.run_daily(
-        send_reminders,
-        time=datetime.strptime("10:00", "%H:%M").time(),
-        name="daily_reminders"
-    )
+    # Требует: pip install "python-telegram-bot[job-queue]"
+    if app.job_queue is not None:
+        from datetime import time as dtime
+        app.job_queue.run_daily(
+            send_reminders,
+            time=dtime(hour=10, minute=0),
+            name="daily_reminders"
+        )
+        logger.info("Напоминания: активированы (10:00 ежедневно)")
+    else:
+        logger.warning("JobQueue недоступен — напоминания отключены. "
+                       "Установите: pip install 'python-telegram-bot[job-queue]'")
 
     conv = ConversationHandler(
         entry_points=[
