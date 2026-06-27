@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
  # Общая форма
  FORM_NAME, FORM_PHONE, FORM_CONSENT,
  # Рассылка
- BROADCAST_TEXT) = range(17)
+ BROADCAST_TEXT) = range(16)
 
 # ── БД ────────────────────────────────────────────────────────────────────────
 DB_PATH = os.environ.get("DB_PATH", "lexx_bot.db")
